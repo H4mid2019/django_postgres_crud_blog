@@ -4,9 +4,8 @@
 Python, Django, PostgreSQL, Docker
 
 ## Concept
-It shows that only with Django without any extra library (like Django REST framework) we can design and 
-run a fully fledge Restful API, It has Class base views and function base views.
-
+It shows that it's possible to design and run a fully-fledged Restful API only with Django (without any extra library
+such as the Django REST framework). It has Class base views and function base views.
 ## Setup
 first convert `.evn_copy` to `.env` then run:
 `docker-compose up --build`
