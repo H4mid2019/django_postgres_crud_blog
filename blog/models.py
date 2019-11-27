@@ -7,10 +7,11 @@ from PIL import Image
 from io import BytesIO
 import os
 
+
 def validate_image(value):
     file = BytesIO(value.read())
-    filesize = file.getbuffer().nbytes
-    if filesize <= 150:
+    file_size = file.getbuffer().nbytes
+    if file_size <= 150:
         raise ValidationError(_('Image size can\'t be zero.'))
     try:
         im = Image.open(file)
@@ -26,11 +27,11 @@ class Media(models.Model):
     class Meta:
         verbose_name = "Media for posts"
         verbose_name_plural = "Medias for posts"
-    
+
     name = models.CharField(_("name"), max_length=80)
     pic = models.FileField(_("picture"), upload_to="posts_medias", validators=[validate_image])
-    pic_alter = models.CharField(_("picture alternative"), max_length=75, null=True, blank=True, help_text="It's the alt attrbiute of the img (image).")
-
+    pic_alter = models.CharField(_("picture alternative"), max_length=75, null=True, blank=True,
+                                 help_text="It's the alt attrbiute of the img (image).")
 
     def __str__(self) -> str:
         return self.name
@@ -47,8 +48,9 @@ class Category(models.Model):
     class Meta:
         verbose_name = "Posts category"
         verbose_name_plural = "Posts Categories"
+
     name = models.CharField(_("name"), max_length=255)
-    slug = models.SlugField(_("slug"),max_length=80, unique=True)
+    slug = models.SlugField(_("slug"), max_length=80, unique=True)
 
     def __str__(self) -> str:
         return self.name
@@ -57,6 +59,7 @@ class Category(models.Model):
 class Post(models.Model):
     class Meta:
         get_latest_by = "id"
+
     title = models.CharField(_("title"), max_length=250)
     slug = models.SlugField(_("slug"), max_length=80, unique=True)
     body = models.TextField(_("body"))

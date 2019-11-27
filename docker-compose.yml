@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: bash -c "chmod +x ./wait-for-postgres.sh && ./wait-for-postgres.sh db 5432 && python manage.py makemigrations && 
+    command: bash -c "chmod +x ./wait-for-postgres.sh && ./wait-for-postgres.sh db 5432 && python manage.py collectstatic --no-input && 
       python manage.py migrate &&
       python manage.py runserver 0.0.0.0:8000"
     ports:
